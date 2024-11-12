@@ -1,7 +1,6 @@
 import streamlit as st
 import random
 import time
-import fitz
 import google.generativeai as genai
 from io import BytesIO
 from reportlab.lib.pagesizes import letter
