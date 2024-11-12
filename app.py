@@ -1,6 +1,4 @@
-from dotenv import load_dotenv
 import streamlit as st
-import os
 import random
 import time
 import fitz
@@ -9,7 +7,7 @@ from io import BytesIO
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 
-# Load environment variables and configure API
+# Configure Gemini API with the API key from Streamlit secrets
 genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
 
 # Initialize model
