@@ -5,6 +5,7 @@ import google.generativeai as genai
 from io import BytesIO
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
+import fitz  # PyMuPDF import to process PDFs
 
 # Configure Gemini API with the API key from Streamlit secrets
 genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
@@ -14,8 +15,11 @@ model = genai.GenerativeModel('gemini-pro')
 
 # Function to retrieve Gemini response
 def get_gemini_response(input_text, pdf_content, prompt):
-    response = model.generate_content([input_text, pdf_content, prompt])
-    return response.text
+    try:
+        response = model.generate_content([input_text, pdf_content, prompt])
+        return response.text
+    except Exception as e:
+        return f"Error: {str(e)}"
 
 # PDF Processing Function
 def input_pdf_setup(uploaded_file):
